@@ -1,38 +1,52 @@
 package family;
 
+import shops.Grocery;
+import shops.Item;
+import shops.TechShop;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Wife {
+public class Wife  {
 
 
-//    public List<String> getListFromWifeForPurchase() {
-//        return listFromWifeForPurchase;
-//    }
-
-         String[] getNamesListFromWife() {
-        return itemNamesListFromWife;
+    public List<String> getListFromWifeWantPurchase() {
+        return listFromWifeWantPurchase;
     }
 
-    public   String[] itemNamesListFromWife = {"Sony","Bread", "Lenovo", "Onion", "Milk"};
-    public List<String> listFromWifeForPurchase = new ArrayList<>();
+    public List<String> listFromWifeWantPurchase = new ArrayList<>();
 
     public List<String> createItemsListForPurchase(String[] names) {
-         Collections.addAll(listFromWifeForPurchase, names);
-            return listFromWifeForPurchase;
-        }
+        Collections.addAll(listFromWifeWantPurchase, names);
+        return listFromWifeWantPurchase;
+    }
 
-        public List<String> addToListItems(String name){
-listFromWifeForPurchase.add(name);
-return listFromWifeForPurchase;
-        }
+    public List<String> addToListItems(String name) {
+        listFromWifeWantPurchase.add(name);
+        return listFromWifeWantPurchase;
+    }
 
 
     public static void main(String[] args) {
-Wife w = new Wife();
-        String[] listFromWife = {"Sony","Bread", "Lenovo", "Onion"};
-        System.out.println(w.createItemsListForPurchase(listFromWife));
+        Husband husband = new Husband();
+        Wife wife = new Wife();
+        String[] listFromWife = {"Sony", "Bread", "Lenovo", "Onion"};
+        Grocery grocery = new Grocery();
+        TechShop techShop = new TechShop();
+        wife.createItemsListForPurchase(listFromWife);
+        husband.getTotalListOfItemsInShops(techShop.getTechShopItemsList(), grocery.getGroceryItemsList());
+        husband.createListOfNamesFromAllShops();
+        List<String> listFromWifeWantPurchase = wife.getListFromWifeWantPurchase();
+        husband.selectItemNamesAccordingWifeList(listFromWifeWantPurchase);
+        System.out.println("List of necessary items from Wife:\n" + listFromWifeWantPurchase);
+        System.out.println("Total list:\n" + husband.getItemListFromAllShops());
+        wife.addToListItems("Acer");
+        System.out.println("Wife add to list Acer, and list go on:\n"+listFromWifeWantPurchase);
+        husband.selectItemNamesAccordingWifeList(wife.getListFromWifeWantPurchase());
+        husband.getItemByNameForPurchase();
+        System.out.println("Bought:\n" + husband.getItemListThatCanPurchase());
+        System.out.println("Total price = "+husband.getTotalPriceOfItems());
 
     }
 }
