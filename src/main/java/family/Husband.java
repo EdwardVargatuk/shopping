@@ -1,18 +1,22 @@
 package family;
 
+import interfaces.ShopFactory;
 import shops.Item;
+import shops.TechShop;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Husband {
+public class Husband extends ArrayList<ShopFactory>{
 
 
     private List<Item> itemListFromAllShops = new ArrayList<>();
     private List<Item> itemListThatCanPurchase = new ArrayList<>();
     private List<String> namesListOfItemThatCanPurchase = new ArrayList<>();
     private List<String> namesListOfItemFromAllShops = new ArrayList<>();
+
+
 
 
     public List<Item> getTotalListOfItemsInShops(List<Item>... requiredShop) {
@@ -68,8 +72,21 @@ public class Husband {
         return itemListThatCanPurchase;
     }
 
-    public List<String> getNamesListOfItemThatCanPurchase() {
-        return namesListOfItemThatCanPurchase;
-    }
 
+//    public void addShop(ShopFactory shopFactory){
+//        add(shopFactory);
+//    }
+//    public List<Item> generatingProgram(){
+//        List<Item> ite =new ArrayList<>();
+//        for (ShopFactory shopFactory : this) {
+//            ite=(shopFactory.createItemsList(TechShop.names, TechShop.prices));
+//        }
+//        return ite;}
+//
+//    public static void main(String[] args) {
+//        Husband h = new Husband();
+//
+//h.addShop(new TechShop());
+//        System.out.println(h.generatingProgram());
+//    }
 }
