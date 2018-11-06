@@ -1,20 +1,19 @@
 package shops;
 
-import java.util.ArrayList;
+import interfaces.ShopItems;
+
 import java.util.List;
 
-public class Jewelry extends Shop {
+public class Jewelry extends Shop implements ShopItems {
 
     private List<Item> jewelryItemsList;
-    private String[] names = {"Ring", "Necklaces", "Bracer"};
-    private double[] prices = {999,9, 4999,9, 3000};
 
-    public Jewelry() {
-        this.jewelryItemsList = new ArrayList<Item>(createItemsList(names, prices));
+    public Jewelry(List<Item> jewelryItemsList) {
+        this.jewelryItemsList = jewelryItemsList;
     }
 
-    public List<Item> getJewelryItemsList() {
+    @Override
+    public List<Item> getShopItemList() {
         return jewelryItemsList;
     }
-
 }

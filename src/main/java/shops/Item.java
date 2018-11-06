@@ -1,9 +1,8 @@
 package shops;
 
-public class Item  {
+public class Item {
     private String name;
     private double price;
-
 
     protected Item(String name, double price) {
         this.name = name;
@@ -12,7 +11,7 @@ public class Item  {
 
     @Override
     public String toString() {
-        return  name + " - " + price;
+        return name + " - " + price;
     }
 
 
@@ -24,7 +23,5 @@ public class Item  {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+
 }

@@ -1,22 +1,25 @@
 package shops;
 
-import java.util.ArrayList;
+import interfaces.ShopItems;
+
 import java.util.List;
 
-public class Grocery extends Shop {
+public class Grocery extends Shop implements ShopItems {
 
     private List<Item> groceryItemsList;
-    private String[] names = {"Bread", "Sausage", "Butter", "Milk", "Potato"};
-    private double[] prices = {10.0, 50.0, 10.5, 20, 5};
 
-    public Grocery() {
-        this.groceryItemsList = new ArrayList<Item>(createItemsList(names, prices));
+    public Grocery(List<Item> groceryItemList) {
+        this.groceryItemsList = groceryItemList;
     }
 
-    public List<Item> getGroceryItemsList() {
+    @Override
+    public List<Item> getShopItemList() {
         return groceryItemsList;
     }
 
+    public String messagefromGrocery() {
+        return "Thanks for you ";
+    }
 }
 
 

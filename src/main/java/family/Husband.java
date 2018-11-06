@@ -1,32 +1,53 @@
 package family;
 
-import interfaces.ShopFactory;
+import interfaces.ShopItems;
 import shops.Item;
-import shops.TechShop;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Husband extends ArrayList<ShopFactory>{
+public class Husband {
+    private List<ShopItems> shopI = new ArrayList<>();
 
+    //    public Husband(List<ShopItems> shopI){
+//        this.shopI =shopI;
+//    }
+    public Husband() {
+    }
 
     private List<Item> itemListFromAllShops = new ArrayList<>();
     private List<Item> itemListThatCanPurchase = new ArrayList<>();
     private List<String> namesListOfItemThatCanPurchase = new ArrayList<>();
     private List<String> namesListOfItemFromAllShops = new ArrayList<>();
 
-
-
-
-    public List<Item> getTotalListOfItemsInShops(List<Item>... requiredShop) {
-        for (List<Item> items : requiredShop) {
-            itemListFromAllShops.addAll(items);
+    public void husbandAction(List<String> listFromWife) {
+        if (itemListFromAllShops != null) {
+            itemListFromAllShops.clear();
+            getTotalListOfItemsInShops();
+            createListOfNamesFromAllShops();
         }
-        return itemListFromAllShops;
+        selectItemNamesAccordingWifeList(listFromWife);
+        getItemByNameForPurchase();
+
+    }
+//    public void messageOfShop(){
+//                    if (shopI instanceof TechShop)
+//                System. out.println(((TechShop) shopI).message());
+//
+//    }
+
+    public void addShop(ShopItems shopItems) {
+        shopI.add(shopItems);
     }
 
-    public void createListOfNamesFromAllShops() {
+    private void getTotalListOfItemsInShops() {
+        for (ShopItems shopItem : shopI) {
+            itemListFromAllShops.addAll(shopItem.getShopItemList());
+        }
+    }
+
+    private void createListOfNamesFromAllShops() {
 //        for (Item itemList : itemListFromAllShops) {
 //            String itemNames = itemList.getName();
 //            namesListOfItemFromAllShops.add(itemNames);
@@ -36,8 +57,7 @@ public class Husband extends ArrayList<ShopFactory>{
                 .collect(Collectors.toList());
     }
 
-
-    public void selectItemNamesAccordingWifeList(List<String> listFromWife) {
+    private void selectItemNamesAccordingWifeList(List<String> listFromWife) {
         createListOfNamesFromAllShops();
         namesListOfItemThatCanPurchase.clear();
         namesListOfItemFromAllShops.stream()
@@ -45,15 +65,16 @@ public class Husband extends ArrayList<ShopFactory>{
                 .forEach(x -> namesListOfItemThatCanPurchase.add(x));
     }
 
-    public List<Item> getItemByNameForPurchase() {
+    private void getItemByNameForPurchase() {
+        itemListThatCanPurchase.clear();
         for (Item itemFromAllList : itemListFromAllShops) {
             for (String str : namesListOfItemThatCanPurchase) {
-                if (str.equals(itemFromAllList.getName())) {
+                if (str.equals(itemFromAllList.getName())
+                ) {
                     itemListThatCanPurchase.add(itemFromAllList);
                 }
             }
         }
-        return itemListThatCanPurchase;
     }
 
     public double getTotalPriceOfItems() {
@@ -72,21 +93,4 @@ public class Husband extends ArrayList<ShopFactory>{
         return itemListThatCanPurchase;
     }
 
-
-//    public void addShop(ShopFactory shopFactory){
-//        add(shopFactory);
-//    }
-//    public List<Item> generatingProgram(){
-//        List<Item> ite =new ArrayList<>();
-//        for (ShopFactory shopFactory : this) {
-//            ite=(shopFactory.createItemsList(TechShop.names, TechShop.prices));
-//        }
-//        return ite;}
-//
-//    public static void main(String[] args) {
-//        Husband h = new Husband();
-//
-//h.addShop(new TechShop());
-//        System.out.println(h.generatingProgram());
-//    }
 }
