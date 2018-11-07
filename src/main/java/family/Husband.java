@@ -1,18 +1,16 @@
 package family;
 
-import interfaces.ShopItems;
+import interfaces.Shop;
 import shops.Item;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Husband {
-    private List<ShopItems> shopI = new ArrayList<>();
+    private List<Shop> shops = new ArrayList<>();
 
-    //    public Husband(List<ShopItems> shopI){
-//        this.shopI =shopI;
-//    }
     public Husband() {
     }
 
@@ -31,18 +29,14 @@ public class Husband {
         getItemByNameForPurchase();
 
     }
-//    public void messageOfShop(){
-//                    if (shopI instanceof TechShop)
-//                System. out.println(((TechShop) shopI).message());
-//
-//    }
 
-    public void addShop(ShopItems shopItems) {
-        shopI.add(shopItems);
+
+    public void addShop(Shop shop) {
+        shops.add(shop);
     }
 
     private void getTotalListOfItemsInShops() {
-        for (ShopItems shopItem : shopI) {
+        for (Shop shopItem : shops) {
             itemListFromAllShops.addAll(shopItem.getShopItemList());
         }
     }

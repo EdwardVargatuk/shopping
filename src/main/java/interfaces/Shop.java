@@ -4,7 +4,7 @@ import shops.Item;
 
 import java.util.List;
 
-public interface ShopItems {
+public interface Shop {
 
     List<Item> getShopItemList();
 }
