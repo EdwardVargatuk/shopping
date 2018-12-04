@@ -1,19 +1,35 @@
 package family;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import interfaces.Shop;
 
-public class Wife  {
+import java.util.*;
 
+public class Wife {
 
-    public List<String> getWantedGoodsFromWife() {
+   private Husband husband = new Husband();
+    private Set<String> wantedGoodsFromWife = new LinkedHashSet<>();
+
+    private Set<String> getWantedGoodsFromWife() {
         return wantedGoodsFromWife;
     }
 
-    private List<String> wantedGoodsFromWife = new ArrayList<>();
-
     public void createAndAddItemsToListForPurchase(String[] names) {
         Collections.addAll(wantedGoodsFromWife, names);
+        System.out.println("Wife add to list:" + Arrays.toString(names));
+    }
+
+    public void sendToHusbandShopList(Shop shop) {
+        husband.addShopToList(shop);
+    }
+
+    public void wifeAction() {
+        husband.getItemsListFromWife(getWantedGoodsFromWife());
+        husband.getTotalListOfItemsInShops();
+        husband.getItemForPurchase();
+        System.out.println("List of necessary items from Wife:\n" + getWantedGoodsFromWife());
+        System.out.println("Total list:\n" + husband.getItemListFromAllShops());
+        System.out.println("Bought:\n" + husband.getItemListThatCanPurchase());
+        System.out.println("Total price = " + husband.getTotalPriceOfItems());
+
     }
 }

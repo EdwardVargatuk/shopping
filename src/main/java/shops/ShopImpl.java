@@ -4,15 +4,12 @@ import interfaces.Shop;
 
 import java.util.*;
 
-public abstract class ShopImpl implements Shop {
+public class ShopImpl implements Shop {
 
-    private List<Item> items = new ArrayList<>();
+    private List<Item> items = new LinkedList<>();
 
     public List<Item> getShopItemList() {
         return items;
-    }
-
-    public ShopImpl() {
     }
 
     public void addProducts(String[] namesOfItems, double[] pricesOfItems) {
